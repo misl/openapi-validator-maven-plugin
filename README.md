@@ -49,6 +49,6 @@ Parameter | Description | Required | Default
 `encoding` | encoding to use for output files | false | ${project.build.sourceEncoding}
 `prettyPrint` | whether to pretty print (true) output or not | false | true
 
-### Sample configuration
+### Sample configurations
 
-- Please see [an example configuration](examples) for using the plugin
+Please see [example configurations](examples) for how to use theis plugin.
