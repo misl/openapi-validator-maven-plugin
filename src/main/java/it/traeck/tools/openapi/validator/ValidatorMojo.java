@@ -1,9 +1,11 @@
 package it.traeck.tools.openapi.validator;
 
+import io.swagger.parser.OpenAPIParser;
 import io.swagger.v3.core.util.Json;
 import io.swagger.v3.core.util.Yaml;
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.parser.OpenAPIV3Parser;
+import io.swagger.v3.parser.core.models.ParseOptions;
+import io.swagger.v3.parser.core.models.SwaggerParseResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -18,11 +20,13 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Goal which validates OpenAPI based API specification files.
  */
-@Mojo(name = "validate", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
+@Mojo(name = "validate", defaultPhase = LifecyclePhase.GENERATE_RESOURCES)
 public class ValidatorMojo extends AbstractMojo {
 
   public enum Format {JSON, YAML, JSONANDYAML}
@@ -75,19 +79,18 @@ public class ValidatorMojo extends AbstractMojo {
 
   @Override
   public void execute() throws MojoExecutionException {
-    OpenAPI openAPI = new OpenAPIV3Parser().read( inputSpec );
-
-    if ( project != null ) {
-      String pEnc = project.getProperties().getProperty( "project.build.sourceEncoding" );
-      if ( StringUtils.isNotBlank( pEnc ) ) {
-        projectEncoding = pEnc;
-      }
+    getLog().info( String.format( "Reading OpenAPI specification: %s", inputSpec ) );
+    ParseOptions options = new ParseOptions();
+    options.setResolve( true );
+    SwaggerParseResult result = new OpenAPIParser().readLocation( inputSpec, (List) null, options );
+    if ( result == null || result.getMessages().size() > 0 ) {
+      throw new MojoExecutionException( result == null ? "Failed for unknown reasons!" : Arrays.toString( result.getMessages().toArray() ) );
     }
-    if ( StringUtils.isBlank( encoding ) ) {
-      encoding = projectEncoding;
-    }
+    OpenAPI openAPI = result.getOpenAPI();
 
     try {
+      determineEncoding();
+
       String openapiJson = null;
       String openapiYaml = null;
       if ( Format.JSON.equals( outputFormat ) || Format.JSONANDYAML.equals( outputFormat ) ) {
@@ -113,18 +116,33 @@ public class ValidatorMojo extends AbstractMojo {
 
       if ( openapiJson != null ) {
         path = Paths.get( outputPath, outputFileName + ".json" );
+        getLog().info( String.format( "Writing: %s", path.toString() ) );
         Files.write( path, openapiJson.getBytes( Charset.forName( encoding ) ) );
       }
       if ( openapiYaml != null ) {
         path = Paths.get( outputPath, outputFileName + ".yaml" );
+        getLog().info( String.format( "Writing: %s", path.toString() ) );
         Files.write( path, openapiYaml.getBytes( Charset.forName( encoding ) ) );
       }
     } catch ( IOException e ) {
       getLog().error( "Error writing API specification", e );
-      throw new MojoExecutionException( "Failed to write API definition", e );
+      throw new MojoExecutionException( "Failed to write API specification", e );
     } catch ( Exception e ) {
       getLog().error( "Error resolving API specification", e );
       throw new MojoExecutionException( e.getMessage(), e );
     }
+  }
+
+  private void determineEncoding() {
+    if ( project != null ) {
+      String pEnc = project.getProperties().getProperty( "project.build.sourceEncoding" );
+      if ( StringUtils.isNotBlank( pEnc ) ) {
+        projectEncoding = pEnc;
+      }
+    }
+    if ( StringUtils.isBlank( encoding ) ) {
+      encoding = projectEncoding;
+    }
+    getLog().info( String.format( "Using '%s' encoding to write output files.", encoding ) );
   }
 }
