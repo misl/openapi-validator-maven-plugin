@@ -1,0 +1,36 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Eclipse excludes
+#####################
+.classpath
+.project
+.settings/
+
+# IntelliJ excludes
+#####################
+.idea/
+
+# Maven excludes
+#####################
+target/
+
+# Java excludes
+#####################
+*.jar
+*.war
+*.ear
+*.class
+
+dependency-reduced-pom.xml
+
+.mvn
+.dockerignore

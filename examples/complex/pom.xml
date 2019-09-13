@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>it.traeck.tools.openapi.examples</groupId>
+        <artifactId>openapi-validator-plugin-examples</artifactId>
+        <version>0.1.0</version>
+    </parent>
+
+    <artifactId>openapi-validator-complex</artifactId>
+
+    <name>TraeckIt :: OpenAPI Validator :: Examples :: Complex</name>
+    <packaging>jar</packaging>
+    <description>Complex example usage of maven plugin to validate OpenAPI specification files (multiple).</description>
+
+    <build>
+        <plugins>
+            <!-- activate the plugin -->
+            <plugin>
+                <groupId>it.traeck.tools.openapi</groupId>
+                <artifactId>openapi-validator-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/petshop-api.yaml</inputSpec>
+                            <outputPath>${project.build.directory}/classes/api</outputPath>
+                            <outputFilename>petshop</outputFilename>
+                            <outputFormat>JSONANDYAML</outputFormat>
+                            <prettyPrint>true</prettyPrint>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

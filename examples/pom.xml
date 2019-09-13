@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>it.traeck.tools.openapi.examples</groupId>
+    <artifactId>openapi-validator-plugin-examples</artifactId>
+    <version>0.1.0</version>
+
+    <name>TraeckIt :: OpenAPI Validator :: Examples</name>
+    <packaging>pom</packaging>
+    <description>Examples of using the maven plugin to validate OpenAPI specification files.</description>
+
+    <modules>
+        <module>simple</module>
+        <module>complex</module>
+    </modules>
+</project>
