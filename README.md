@@ -3,7 +3,9 @@ openapi-validator-maven-plugin
 
 A Maven plugin to support validation of and conversion (YAML vs JSON) to OpenAPI (swagger) files  using the [Swagger Parser library](https://github.com/swagger-api/swagger-parser).
 
-It not only verifies whether the API specification files are valid, but also merges multiple files into a single YAML or JSON file. This is especially usefull where tools can not cope with JSON `$ref` references to external files.
+It not only verifies whether the API specification files are valid, but also merges splitted files into a single YAML or JSON file. This is especially usefull where tools can not cope with JSON `$ref` references to external files.
+
+More info on splitted OpenAPI specification files read [Design Web APIs](https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/)
 
 Usage
 ============================
