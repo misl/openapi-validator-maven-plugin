@@ -13,6 +13,32 @@
         <maven>3.2.5</maven>
     </prerequisites>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>misl</id>
+            <name>Minto van der Sluis</name>
+            <email>minto@xup.nl</email>
+            <url>https://www.linkedin.com/in/mintovandersluis</url>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Amsterdam</timezone>
+            <properties>
+                <githubUrl>https://github.com/misl</githubUrl>
+            </properties>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
