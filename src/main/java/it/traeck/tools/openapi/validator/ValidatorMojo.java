@@ -51,8 +51,8 @@ public class ValidatorMojo extends AbstractMojo {
   /**
    * Name of the output file in which to write final OpenAPI specification.
    */
-  @Parameter(name = "outputFileName", property = "openapi.validator.maven.plugin.outputFileName", defaultValue = "openapi")
-  private String outputFileName = "openapi";
+  @Parameter(name = "outputFilename", property = "openapi.validator.maven.plugin.outputFilename", defaultValue = "openapi")
+  private String outputFilename = "openapi";
 
   /**
    * Format of the output file.
@@ -115,12 +115,12 @@ public class ValidatorMojo extends AbstractMojo {
       }
 
       if ( openapiJson != null ) {
-        path = Paths.get( outputPath, outputFileName + ".json" );
+        path = Paths.get( outputPath, outputFilename + ".json" );
         getLog().info( String.format( "Writing: %s", path.toString() ) );
         Files.write( path, openapiJson.getBytes( Charset.forName( encoding ) ) );
       }
       if ( openapiYaml != null ) {
-        path = Paths.get( outputPath, outputFileName + ".yaml" );
+        path = Paths.get( outputPath, outputFilename + ".yaml" );
         getLog().info( String.format( "Writing: %s", path.toString() ) );
         Files.write( path, openapiYaml.getBytes( Charset.forName( encoding ) ) );
       }
