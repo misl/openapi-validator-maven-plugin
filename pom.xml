@@ -9,6 +9,7 @@
     <name>TraeckIt :: OpenAPI Validator (maven-plugin)</name>
     <packaging>maven-plugin</packaging>
     <description>maven plugin to validate OpenAPI specification files.</description>
+    <url>https://github.com/misl/openapi-validator-maven-plugin</url>
     <prerequisites>
         <maven>3.2.5</maven>
     </prerequisites>
