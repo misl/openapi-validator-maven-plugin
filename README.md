@@ -51,4 +51,4 @@ Parameter | Description | Required | Default
 
 ### Sample configurations
 
-Please see [example configurations](examples) for how to use theis plugin.
+Please see [example configurations](examples) for how to use this maven plugin.
