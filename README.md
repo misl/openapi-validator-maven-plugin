@@ -15,7 +15,7 @@ Add to your `build->plugins` section (default phase is `generate-sources` phase)
 <plugin>
   <groupId>it.traeck.tools.openapi</groupId>
   <artifactId>openapi-validator-maven-plugin</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <executions>
     <execution>
       <goals>
