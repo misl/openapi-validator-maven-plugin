@@ -5,7 +5,7 @@
     <parent>
         <groupId>it.traeck.tools.openapi.examples</groupId>
         <artifactId>openapi-validator-plugin-examples</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>openapi-validator-simple</artifactId>
