@@ -1,0 +1,19 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "04:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - misl
+  assignees:
+  - misl
+  ignore:
+  - dependency-name: io.swagger.parser.v3:swagger-parser-v2-converter
+    versions:
+    - 2.0.24
+  - dependency-name: io.swagger.parser.v3:swagger-parser
+    versions:
+    - 2.0.24
